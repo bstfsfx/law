@@ -1,11 +1,16 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import path from 'node:path';
+import fs from 'node:fs';
 import { MenuItem, type MenuItemRecord } from './models/menu-item';
 
 const app = express();
 const port = Number(process.env['PORT'] ?? 3000);
-const clientRoot = path.resolve(__dirname, '../client/browser');
+// Works both from `dist/server/` (pnpm start) and `dist/api/server/` (Vercel),
+// where this file sits one directory deeper.
+const clientRoot = fs.existsSync(path.resolve(__dirname, '../client/browser'))
+  ? path.resolve(__dirname, '../client/browser')
+  : path.resolve(__dirname, '../../client/browser');
 
 const fallbackMenu: MenuItemRecord[] = [
   {
@@ -90,10 +95,6 @@ app.get(/.*/, (request, response, next) => {
   });
 });
 
-app.listen(port, '0.0.0.0', () => {
-  console.info(`羅家祖傳黑砂糖刨冰 website listening on port ${port}`);
-});
-
 const mongoUri = process.env['MONGODB_URI'];
 if (mongoUri) {
   void mongoose
@@ -105,3 +106,13 @@ if (mongoUri) {
 } else {
   console.info('MONGODB_URI is not set; serving the bundled read-only menu.');
 }
+
+// Only listen when executed directly (local `pnpm start`). The Vercel serverless
+// entry imports this app instead, so no port is opened there.
+if (require.main === module) {
+  app.listen(port, '0.0.0.0', () => {
+    console.info(`羅家祖傳黑砂糖刨冰 website listening on port ${port}`);
+  });
+}
+
+export { app };

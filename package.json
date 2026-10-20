@@ -7,10 +7,10 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "ng build && tsc -p server/tsconfig.json",
+    "build": "ng build && tsc -p server/tsconfig.json && tsc -p api/tsconfig.json",
     "start": "node --env-file-if-exists=.env dist/server/index.js",
     "dev": "pnpm build && pnpm start",
-    "check": "ng build && tsc -p server/tsconfig.json"
+    "check": "ng build && tsc -p server/tsconfig.json && tsc -p api/tsconfig.json"
   },
   "dependencies": {
     "@angular/common": "^20.3.0",
