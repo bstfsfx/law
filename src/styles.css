@@ -42,8 +42,13 @@ img { display: block; max-width: 100%; }
   width: min(1320px, calc(100% - 64px)); min-height: 92px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 28px;
 }
-.brand { flex: 0 0 245px; }
-.brand img { width: 245px; height: 69px; object-fit: contain; }
+/* The brand asset is a circular 720x741 mark, so it is sized as a square badge
+   rather than stretched into a wide slot. */
+.brand { flex: 0 0 auto; display: flex; align-items: center; gap: clamp(8px, .9vw, 13px); }
+.brand img { display: block; width: auto; aspect-ratio: 68 / 70; height: clamp(46px, 5.4vw, 70px); max-width: 100%; }
+.brand-name { display: flex; flex-direction: column; line-height: 1.18; color: var(--brown); font-family: var(--serif); white-space: nowrap; }
+.brand-name strong { font-size: clamp(1.02rem, 1.5vw, 1.24rem); font-weight: 700; letter-spacing: .06em; }
+.brand-name > span { font-size: clamp(.78rem, 1.02vw, .9rem); letter-spacing: .1em; color: var(--muted); }
 .primary-navigation { display: flex; align-items: center; justify-content: flex-end; gap: clamp(18px, 2.15vw, 36px); }
 .primary-navigation > a:not(.nav-map) {
   position: relative; padding: 12px 0; font-size: .91rem; letter-spacing: .07em; white-space: nowrap;
@@ -168,8 +173,9 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 1100px) {
   .header-inner, .hero-inner { width: min(100% - 44px, 1320px); }
-  .brand { flex-basis: 200px; }
-  .brand img { width: 200px; height: auto; }
+  .brand img { height: 58px; width: auto; }
+  .brand-name strong { font-size: 1.06rem; }
+  .brand-name > span { font-size: .82rem; }
   .primary-navigation { gap: 17px; }
   .primary-navigation > a:not(.nav-map) { font-size: .83rem; }
   .nav-map { padding: 10px 14px; }
@@ -209,8 +215,10 @@ img { display: block; max-width: 100%; }
 @media (max-width: 600px) {
   html { scroll-padding-top: 72px; }
   .header-inner { width: calc(100% - 34px); min-height: 72px; }
-  .brand { flex-basis: 176px; }
-  .brand img { width: 176px; }
+  .brand img { height: 46px; width: auto; }
+  .brand { gap: 8px; }
+  .brand-name strong { font-size: .92rem; letter-spacing: .04em; }
+  .brand-name > span { font-size: .7rem; letter-spacing: .06em; }
   .primary-navigation { right: 12px; left: 12px; }
   .hero, .hero-inner { min-height: 555px; }
   .hero-photo { inset: 0; width: 100%; }

@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import path from 'node:path';
-import fs from 'node:fs';
+import path from 'path';
+import fs from 'fs';
 import { MenuItem, type MenuItemRecord } from './models/menu-item';
 
 const app = express();
