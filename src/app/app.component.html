@@ -1,0 +1,160 @@
+<a class="skip-link" href="#main">跳至主要內容</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#home" aria-label="羅家祖傳黑砂糖刨冰首頁" (click)="closeMobileMenu()">
+      <img src="/images/brand-mark.jpg" alt="羅家祖傳黑砂糖刨冰" width="245" height="69">
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="mobileMenuOpen"
+      aria-controls="primary-navigation"
+      [attr.aria-label]="mobileMenuOpen ? '關閉導覽選單' : '開啟導覽選單'"
+      (click)="mobileMenuOpen = !mobileMenuOpen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-navigation" class="primary-navigation" [class.is-open]="mobileMenuOpen" aria-label="主要導覽">
+      <a href="#home" (click)="closeMobileMenu()">首頁</a>
+      <a href="#story" (click)="closeMobileMenu()">品牌故事</a>
+      <a href="#menu" (click)="closeMobileMenu()">人氣冰品</a>
+      <a href="#store" (click)="closeMobileMenu()">店鋪資訊</a>
+      <a href="#news" (click)="closeMobileMenu()">最新消息</a>
+      <a href="tel:+88673657771" (click)="closeMobileMenu()">聯絡我們</a>
+      <a class="nav-map" [href]="mapUrl" target="_blank" rel="noopener noreferrer" aria-label="在 Google 地圖查看店家">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.05 7-13a7 7 0 1 0-14 0c0 6.95 7 13 7 13Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+        導航到店
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-photo" aria-hidden="true">
+      <img src="/images/hero-ice.jpg" alt="">
+    </div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>慢火熬煮・傳承好味</p>
+        <h1 id="hero-title">一碗黑砂糖刨冰，<br><span>留住傳統的好味道。</span></h1>
+        <p class="hero-lead">用好的食材，慢火熬出好味道。<br>來右昌，品嚐羅家堅持的傳統甜品。</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v6a3 3 0 0 0 6 0V4M8 4v7M17 4v16M17 4c-2.3 1.7-3 4-3 6h3"></path></svg>
+            查看菜單
+          </a>
+          <a class="button button-outline" [href]="mapUrl" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.05 7-13a7 7 0 1 0-14 0c0 6.95 7 13 7 13Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+            導航到店
+          </a>
+        </div>
+      </div>
+      <div class="hero-stamp" aria-hidden="true"><span>慢火</span><span>熬煮</span><i></i></div>
+    </div>
+    <div class="hero-bottom-wave" aria-hidden="true"></div>
+  </section>
+
+  <section class="menu-section section-pad" id="menu" aria-labelledby="menu-title">
+    <div class="section-heading">
+      <span class="heading-rule"></span>
+      <div>
+        <p class="section-kicker">SIGNATURE DESSERTS</p>
+        <h2 id="menu-title">人氣推薦</h2>
+        <p class="section-subtitle">傳統滋味・經典好味</p>
+      </div>
+      <span class="heading-rule"></span>
+    </div>
+
+    <div class="menu-grid">
+      <article class="menu-card" *ngFor="let item of menuItems; let index = index">
+        <div class="menu-image-wrap">
+          <img [src]="item.image" [alt]="item.alt" loading="lazy" width="520" height="410">
+          <span class="popular-badge" *ngIf="index === 0">人氣 No.1</span>
+        </div>
+        <div class="menu-card-copy">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.note }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="story-section section-pad" id="story" aria-labelledby="story-title">
+    <div class="story-copy">
+      <p class="section-kicker">BRAND STORY</p>
+      <h2 id="story-title">一份好味道，<br>值得慢慢熬。</h2>
+      <div class="gold-brush" aria-hidden="true"></div>
+      <p class="story-text">用好的食材慢火熬出好味道，一路下來要堅持初衷真的不容易，簡單而不簡單，但現在每天堅持做同樣的事也很幸福，希望這份好味道可以讓更多人知道</p>
+      <a class="button button-brown" href="#store">
+        來右昌，嚐一碗好滋味
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+    <div class="story-visual">
+      <img src="/images/syrup-making.jpg" alt="以長柄勺慢慢舀起熬煮中的黑糖漿" loading="lazy" width="900" height="565">
+      <div class="story-note" aria-hidden="true"><span>羅家祖傳</span><strong>黑砂糖刨冰</strong><i></i><small>堅持傳統・只為一碗好味道</small></div>
+    </div>
+  </section>
+
+  <section class="news-section" id="news" aria-labelledby="news-title">
+    <div class="news-inner">
+      <div class="news-mark" aria-hidden="true">報</div>
+      <div class="news-copy">
+        <p class="section-kicker">IN THE NEWS</p>
+        <h2 id="news-title">鮮週報・新聞報導</h2>
+        <a class="news-article-title" [href]="newsUrl" target="_blank" rel="noopener noreferrer">正港ㄟ台灣味 羅家祖傳黑砂糖刨冰 一本初衷堅持純天然真材實料</a>
+      </div>
+      <a class="news-link" [href]="newsUrl" target="_blank" rel="noopener noreferrer">
+        閱讀完整報導
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="store-section section-pad" id="store" aria-labelledby="store-title">
+    <div class="store-photo">
+      <img src="/images/store-front.jpg" alt="羅家祖傳黑砂糖刨冰店面" loading="lazy" width="720" height="422">
+    </div>
+    <div class="store-copy">
+      <p class="section-kicker">VISIT OUR SHOP</p>
+      <h2 id="store-title">店舖資訊</h2>
+      <div class="store-detail">
+        <span class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s7-6.05 7-13a7 7 0 1 0-14 0c0 6.95 7 13 7 13Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+        </span>
+        <div><h3>羅家祖傳黑砂糖刨冰</h3><p>{{ address }}</p></div>
+      </div>
+      <div class="store-detail">
+        <span class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6.6 3.5 9.5 3l2 4.9-2 1.6a15 15 0 0 0 5 5l1.6-2 4.9 2-.5 2.9a2 2 0 0 1-2 1.6A16 16 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z"></path></svg>
+        </span>
+        <div><h3>電話聯絡</h3><a [href]="'tel:+88673657771'">{{ phone }}</a></div>
+      </div>
+      <a class="button button-brown store-map-button" [href]="mapUrl" target="_blank" rel="noopener noreferrer">
+        查看 Google 地圖
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+      </a>
+      <p class="store-welcome">歡迎來到羅家，<br>品嚐這份傳統的美味！</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="footer-brand" href="#home" aria-label="羅家祖傳黑砂糖刨冰首頁">
+      <span class="footer-mark" aria-hidden="true">羅</span>
+      <span class="footer-wordmark"><span>羅家祖傳</span><strong>黑砂糖刨冰</strong></span>
+    </a>
+    <nav class="footer-nav" aria-label="頁尾導覽">
+      <a href="#home">首頁</a><a href="#story">品牌故事</a><a href="#menu">人氣冰品</a><a href="#store">店鋪資訊</a><a href="#news">最新消息</a>
+    </nav>
+    <a class="footer-location" [href]="mapUrl" target="_blank" rel="noopener noreferrer" aria-label="地圖導航">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.05 7-13a7 7 0 1 0-14 0c0 6.95 7 13 7 13Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+    </a>
+  </div>
+  <p class="copyright">© 2024 羅家祖傳黑砂糖刨冰. All Rights Reserved.</p>
+  <div class="footer-ornament" aria-hidden="true"></div>
+</footer>
